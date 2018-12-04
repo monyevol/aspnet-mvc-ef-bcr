@@ -1,0 +1,49 @@
+﻿@model BethesdaCarRental1.Models.Car
+
+@{
+    ViewBag.Title = "Delete Car";
+}
+
+<h2 class="common-font text-center bold blue">Delete Car/Vehicle</h2>
+
+<h3 class="common-font text-center bold blue">Are you sure you want to remove this car from our fleet?</h3>
+
+<hr />
+
+<div class="containment">
+    <dl class="dl-horizontal common-font">
+        <dt class="blue">@Html.DisplayNameFor(model => model.CarID)</dt>
+        <dd>@Html.DisplayFor(model => model.CarID)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.TagNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.TagNumber)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Make)</dt>
+        <dd>@Html.DisplayFor(model => model.Make)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Model)</dt>
+        <dd>@Html.DisplayFor(model => model.Model)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Passengers)</dt>
+        <dd>@Html.DisplayFor(model => model.Passengers)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Category)</dt>
+        <dd>@Html.DisplayFor(model => model.Category)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Condition)</dt>
+        <dd>@Html.DisplayFor(model => model.Condition)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.AvailabilityStatus)</dt>
+        <dd>@Html.DisplayFor(model => model.AvailabilityStatus)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete Car from System" class="btn btn-primary" /> ::
+            @Html.ActionLink("Cars/Vehicles", "Index")
+        </div>
+    }
+</div>

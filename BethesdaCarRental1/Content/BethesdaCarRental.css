@@ -1,0 +1,97 @@
+﻿body {
+    background-color: white;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.blue {
+    color: #286090;
+}
+
+.top-padding {
+    padding-top: 0.50em;
+}
+
+.containment {
+    margin: auto;
+    width: 500px;
+}
+
+.centralized {
+    margin: auto;
+    width: 780px;
+}
+
+.heading {
+    color: white;
+    background-color: steelblue;
+}
+
+#top-banner {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1120;
+    width: 100%;
+    bottom: auto;
+    position: fixed;
+    height: 6.25em;
+    background-color: #202460;
+}
+
+.push-down {
+    margin-top: 8em;
+}
+
+.bordered {
+    border: 1px solid black;
+}
+
+.parajust {
+    text-align: justify;
+    font-family: 'Times New Roman', Garamond, Georgia, serif;
+}
+
+.navbar-fixed-top {
+    top: 6.25em;
+}
+
+.sect-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: maroon;
+    padding-bottom: 5px;
+    border-bottom: 2px dotted #0832a4;
+}
+
+.navbar-brand {
+    height: 28px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.navbar-inverse {
+    background-color: #263b95;
+    border-top: 3px solid #000;
+}
+
+.common-font {
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-nav > li > a:link {
+    font-size: 12px;
+    line-height: 16px;
+    color: #faf76f;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus {
+        font-size: 12px;
+        line-height: 16px;
+        background-color: #202460;
+        color: lavender;
+    }

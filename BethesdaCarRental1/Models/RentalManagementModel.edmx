@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BethesdaCarRental2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagNumber" Type="varchar" MaxLength="10" />
+          <Property Name="Make" Type="varchar" MaxLength="20" />
+          <Property Name="Model" Type="varchar" MaxLength="20" />
+          <Property Name="Passengers" Type="varchar" MaxLength="10" />
+          <Property Name="Category" Type="varchar" MaxLength="20" />
+          <Property Name="Condition" Type="varchar" MaxLength="20" />
+          <Property Name="AvailabilityStatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="varchar" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="EmploymentTitle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RentalOrders">
+          <Key>
+            <PropertyRef Name="RentalOrderID" />
+          </Key>
+          <Property Name="RentalOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="DriversLicenseNumber" Type="varchar" MaxLength="12" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="40" />
+          <Property Name="County" Type="varchar" MaxLength="40" />
+          <Property Name="State" Type="varchar" MaxLength="40" />
+          <Property Name="ZIPCode" Type="varchar" MaxLength="20" />
+          <Property Name="CarID" Type="int" />
+          <Property Name="CarCondition" Type="varchar" MaxLength="20" />
+          <Property Name="TankLevel" Type="varchar" MaxLength="20" />
+          <Property Name="MileageStart" Type="varchar" MaxLength="20" />
+          <Property Name="MileageEnd" Type="varchar" MaxLength="20" />
+          <Property Name="MileageTotal" Type="varchar" MaxLength="20" />
+          <Property Name="StartDate" Type="varchar" MaxLength="40" />
+          <Property Name="EndDate" Type="varchar" MaxLength="40" />
+          <Property Name="TotalDays" Type="varchar" MaxLength="10" />
+          <Property Name="RateApplied" Type="varchar" MaxLength="10" />
+          <Property Name="SubTotal" Type="varchar" MaxLength="10" />
+          <Property Name="TaxRate" Type="varchar" MaxLength="10" />
+          <Property Name="TaxAmount" Type="varchar" MaxLength="10" />
+          <Property Name="OrderTotal" Type="varchar" MaxLength="10" />
+          <Property Name="PaymentDate" Type="varchar" MaxLength="40" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="RentalOrders" Type="Self.RentalOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="RentalOrders">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="RentalOrders" Type="Self.RentalOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="RentalOrders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BethesdaCarRental2ModelStoreContainer">
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RentalOrders" EntityType="Self.RentalOrders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars" Association="Self.FK_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="RentalOrders" EntitySet="RentalOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees" Association="Self.FK_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="RentalOrders" EntitySet="RentalOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BethesdaCarRental2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarID" />
+          </Key>
+          <Property Name="CarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Make" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Passengers" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Condition" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AvailabilityStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RentalOrders" Relationship="Self.FK_Cars" FromRole="Cars" ToRole="RentalOrders" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RentalOrders" Relationship="Self.FK_Employees" FromRole="Employees" ToRole="RentalOrders" />
+        </EntityType>
+        <EntityType Name="RentalOrder">
+          <Key>
+            <PropertyRef Name="RentalOrderID" />
+          </Key>
+          <Property Name="RentalOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="DriversLicenseNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ZIPCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CarID" Type="Int32" />
+          <Property Name="CarCondition" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TankLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MileageStart" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MileageEnd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MileageTotal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="TotalDays" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RateApplied" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SubTotal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TaxRate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TaxAmount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrderTotal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentDate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="OrderStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Cars" FromRole="RentalOrders" ToRole="Cars" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employees" FromRole="RentalOrders" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="RentalOrders" Type="Self.RentalOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="CarID" />
+            </Principal>
+            <Dependent Role="RentalOrders">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="RentalOrders" Type="Self.RentalOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="RentalOrders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BethesdaCarRentalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="RentalOrders" EntityType="Self.RentalOrder" />
+          <AssociationSet Name="FK_Cars" Association="Self.FK_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="RentalOrders" EntitySet="RentalOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees" Association="Self.FK_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="RentalOrders" EntitySet="RentalOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BethesdaCarRental2ModelStoreContainer" CdmEntityContainer="BethesdaCarRentalEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="BethesdaCarRental2Model.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="TagNumber" ColumnName="TagNumber" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Passengers" ColumnName="Passengers" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="AvailabilityStatus" ColumnName="AvailabilityStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="BethesdaCarRental2Model.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmploymentTitle" ColumnName="EmploymentTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentalOrders">
+            <EntityTypeMapping TypeName="BethesdaCarRental2Model.RentalOrder">
+              <MappingFragment StoreEntitySet="RentalOrders">
+                <ScalarProperty Name="RentalOrderID" ColumnName="RentalOrderID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DriversLicenseNumber" ColumnName="DriversLicenseNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="CarCondition" ColumnName="CarCondition" />
+                <ScalarProperty Name="TankLevel" ColumnName="TankLevel" />
+                <ScalarProperty Name="MileageStart" ColumnName="MileageStart" />
+                <ScalarProperty Name="MileageEnd" ColumnName="MileageEnd" />
+                <ScalarProperty Name="MileageTotal" ColumnName="MileageTotal" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+                <ScalarProperty Name="RateApplied" ColumnName="RateApplied" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

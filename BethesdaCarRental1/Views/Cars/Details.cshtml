@@ -1,0 +1,43 @@
+﻿@model BethesdaCarRental1.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="common-font text-center bold blue">Car/Vehicle Details</h2>
+
+<hr />
+
+<div class="containment">
+    <dl class="dl-horizontal common-font">
+        <dt class="blue">@Html.DisplayNameFor(model => model.CarID)</dt>
+        <dd>@Html.DisplayFor(model => model.CarID)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.TagNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.TagNumber)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Category)</dt>
+        <dd>@Html.DisplayFor(model => model.Category)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Make)</dt>
+        <dd>@Html.DisplayFor(model => model.Make)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Model)</dt>
+        <dd>@Html.DisplayFor(model => model.Model)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Passengers)</dt>
+        <dd>@Html.DisplayFor(model => model.Passengers)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.Condition)</dt>
+        <dd>@Html.DisplayFor(model => model.Condition)</dd>
+
+        <dt class="blue">@Html.DisplayNameFor(model => model.AvailabilityStatus)</dt>
+        <dd>@Html.DisplayFor(model => model.AvailabilityStatus)</dd>
+    </dl>
+</div>
+
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarID }) ::
+    @Html.ActionLink("Delete", "Delete", new { id = Model.CarID }) ::
+    @Html.ActionLink("Cars/Vehicles", "Index")
+</p>
